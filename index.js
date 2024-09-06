@@ -6,6 +6,7 @@ const cors = require("cors");
 const User = require("./models/User");
 const userrouter = require("./routes/userRoute");
 const adminRoutes = require("./routes/adminroute");
+const queryRoute = require("./routes/queryRoute");
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/karam")
@@ -17,8 +18,11 @@ app.use(express.json());
 app.use(cors());
 
 //Routes
+app.use(queryRoute);
 app.use(userrouter);
 app.use(adminRoutes);
+
+
 
 app.get("/", async (req, res) => {
   res.send("Hello World!");
