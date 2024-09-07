@@ -9,14 +9,14 @@ const queryRoute = require("./routes/queryRoute");
 const connectmongo = require('./database/db')
 
 // Middleware
-app.use(express.json());
+
 
 
 app.use(cors({
     origin: 'https://customer-query-management-frontend.vercel.app',
     credentials: true
 }));
-
+app.use(express.json());
 connectmongo();
 
 // Routes
