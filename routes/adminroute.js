@@ -1,14 +1,13 @@
 
 const Admin=require('../models/Admin')
-
-
+require("dotenv").config();
 const express = require('express');
 const router = express.Router();
 
 // admin credentials
 const adminCredentials = {
-  email: 'janhvi23@gmail.com',
-  password: 'white@lily'
+  email: 'process.env.ADMIN_EMAIL',
+  password: 'process.env.ADMIN_PASS'
 };
 
 // POST route for admin login

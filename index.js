@@ -1,33 +1,26 @@
 const express = require("express");
 const app = express();
-const port = 4000;
 const mongoose = require("mongoose");
 const cors = require("cors");
 const User = require("./models/User");
 const userrouter = require("./routes/userRoute");
 const adminRoutes = require("./routes/adminroute");
 const queryRoute = require("./routes/queryRoute");
+const connectmongo = require('./database/db')
 
-mongoose
-  .connect("mongodb://127.0.0.1:27017/karam")
-  .then(() => console.log("Connection Done 👍"))
-  .catch((err) => console.log("Error Found  😒", err));
-
-//middleware
+// Middleware
 app.use(express.json());
 app.use(cors());
+connectmongo();
 
-//Routes
+// Routes
 app.use(queryRoute);
 app.use(userrouter);
 app.use(adminRoutes);
-
-
 
 app.get("/", async (req, res) => {
   res.send("Hello World!");
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+// Instead of listening on a port, export the app
+module.exports = app;
