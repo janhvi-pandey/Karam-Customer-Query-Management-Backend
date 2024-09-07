@@ -3,25 +3,32 @@ const router = express.Router();
 const User=require('../models/User')
 
 router.post("/", async (req, res) => {
-    const result = await User.create(req.body);
-    return res.send({ msg: "Success" });
-  });
-  
-  router.post("/login",async(req,res)=>{
-      const{email,password}=req.body;
-      const user=await User.findOne({email})
-      if(user){
-          if(user.password===password){
-              return res.send({msg:"Login Success",id:user._id});
+  try {
+      const result = await User.create(req.body);
+      return res.send({ msg: "Success" });
+  } catch (error) {
+      return res.status(500).send({ msg: "Internal Server Error" });
+  }
+});
+
+router.post("/login", async (req, res) => {
+  try {
+      const { email, password } = req.body;
+      const user = await User.findOne({ email });
+      if (user) {
+          if (user.password === password) {
+              return res.send({ msg: "Login Success", id: user._id });
+          } else {
+              return res.send({ msg: "Invalid Password" });
           }
-          else{
-              return res.send({msg:"Invalid Password"});
-          }
+      } else {
+          return res.send({ msg: "User does not exist" });
       }
-      else{
-          return res.send({msg:"User does not exist"});
-      }
-  })
+  } catch (error) {
+      return res.status(500).send({ msg: "Internal Server Error" });
+  }
+});
+
   router.get("/", async (req, res) => {
     const result = await User.find();
     return res.send(result);

@@ -10,7 +10,13 @@ const connectmongo = require('./database/db')
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+
+
+app.use(cors({
+    origin: 'https://customer-query-management-frontend.vercel.app',
+    credentials: true
+}));
+
 connectmongo();
 
 // Routes
