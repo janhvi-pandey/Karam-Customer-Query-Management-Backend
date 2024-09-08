@@ -6,7 +6,11 @@ queryRoute.get('/getquery',async(req,res)=>{
     const result=await Query.find();
     res.send(result)
 })
-
+queryRoute.get('/getpenquery/:id',async(req,res)=>{
+  const id=req.params.id;
+  const result=await Query.find({u_id:id,status:"pen"})
+  res.send({msg:"Success",result:result})
+})
 
 queryRoute.post('/addquery',async(req,res)=>{
   const query=req.body;

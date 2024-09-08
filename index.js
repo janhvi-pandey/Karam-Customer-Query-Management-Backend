@@ -13,7 +13,7 @@ const connectmongo = require('./database/db')
 
 
 app.use(cors({
-    origin: 'https://customer-query-management-frontend.vercel.app',
+    origin: ['https://customer-query-management-frontend.vercel.app', 'http://localhost:3000'], 
     credentials: true
 }));
 app.use(express.json());
