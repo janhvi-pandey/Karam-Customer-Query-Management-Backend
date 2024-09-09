@@ -2,6 +2,7 @@
 const Admin=require('../models/Admin')
 require("dotenv").config();
 const express = require('express');
+const Query = require('../models/query');
 const router = express.Router();
 
 
@@ -15,6 +16,33 @@ router.post('/adminlogin', (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password' });
   }
 });
+
+router.get('/getallpen', async(req, res) => {
+  try {
+    const penquery = await Query.find({ status: 'pen' });
+    res.json(penquery);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching pen queries' });
+  }
+})
+
+router.get('/getallpro', async(req, res) => {
+  try {
+    const penquery = await Query.find({ status: 'pro' });
+    res.json(penquery);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching pen queries' });
+  }
+})
+
+router.get('/getallcomp', async(req, res) => {
+  try {
+    const penquery = await Query.find({ status: 'comp' });
+    res.json(penquery);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching pen queries' });
+  }
+})
 
 
 module.exports = router;
