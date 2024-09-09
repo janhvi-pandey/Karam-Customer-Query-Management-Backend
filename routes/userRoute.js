@@ -60,23 +60,15 @@ router.post("/login", async (req, res) => {
 
 
   // In userroute.js or another relevant route file
-router.get("/allusers", async (req, res) => {
-  try {
-    const users = await User.find();
-    const userPromises = users.map(async (user) => {
-      // Assuming you have a Query model with a userId field
-      const queryCount = await Query.countDocuments({ userId: user._id });
-      return {
-        ...user.toObject(),
-        queryCount
-      };
-    });
-    const usersWithQueryCount = await Promise.all(userPromises);
-    res.send(usersWithQueryCount);
-  } catch (error) {
-    res.status(500).send({ msg: "Internal Server Error" });
-  }
-});
+  router.get('/allusers', async (req, res) => {
+    try {
+      const users = await User.find({}, 'name'); // Only fetch the 'name' field
+      res.json(users);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ msg: "Internal Server Error" });
+    }
+  });
 
 
   module.exports=router;
