@@ -31,5 +31,24 @@ queryRoute.post('/addquery',async(req,res)=>{
 });
 
 
+queryRoute.get('/getuserquerycounts/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+    const pendingCount = await Query.countDocuments({ uid: id, status: 'pen' });
+    const processingCount = await Query.countDocuments({ uid: id, status: 'pro' });
+    const completedCount = await Query.countDocuments({ uid: id, status: 'com' });
+
+    res.json({
+      pendingCount,
+      processingCount,
+      completedCount,
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching user query counts' });
+  }
+});
+
+
+
 
 module.exports=queryRoute;
