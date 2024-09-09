@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User=require('../models/User')
+const Query=require('../models/query')
 
 router.post("/", async (req, res) => {
   try {
