@@ -20,9 +20,9 @@ app.use(express.json());
 connectmongo();
 
 // Routes
+app.use('/admin', adminRoutes);
 app.use(queryRoute);
 app.use(userrouter);
-app.use(adminRoutes);
 
 app.get("/", async (req, res) => {
   res.send("Hello World!");
