@@ -8,7 +8,7 @@ queryRoute.get('/getquery',async(req,res)=>{
 })
 queryRoute.get('/getpenquery/:id',async(req,res)=>{
   const id=req.params.id;
-  const result=await Query.find({u_id:id,status:"pen"})
+  const result=await Query.find({uid:id,status:"pen"})
   res.send({msg:"Success",result:result})
 })
 
