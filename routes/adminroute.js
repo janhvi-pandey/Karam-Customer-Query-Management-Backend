@@ -86,4 +86,21 @@ router.get("/getquerycounts", async (req, res) => {
   }
 });
 
+router.get("/allusers", async (req, res) => {
+  try {
+    const users = await User.find();
+    const userPromises = users.map(async (user) => {
+      // Assuming you have a Query model with a userId field
+      const queryCount = await Query.countDocuments({ userId: user._id });
+      return {
+        ...user.toObject(),
+        queryCount
+      };
+    });
+    const usersWithQueryCount = await Promise.all(userPromises);
+    res.send(usersWithQueryCount);
+  } catch (error) {
+    res.status(500).send({ msg: "Internal Server Error" });
+  }
+});
 module.exports = router;
