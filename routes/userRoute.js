@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User=require('../models/User')
-const Query=require('../models/query')
+
 
 router.post("/", async (req, res) => {
   try {
@@ -58,17 +58,6 @@ router.post("/login", async (req, res) => {
     }
   });
 
-
-  // In userroute.js or another relevant route file
-  router.get('/allusers', async (req, res) => {
-    try {
-      const users = await User.find({}, 'name'); // Only fetch the 'name' field
-      res.json(users);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ msg: "Internal Server Error" });
-    }
-  });
 
 
   module.exports=router;

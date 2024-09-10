@@ -1,6 +1,7 @@
 const express = require("express");
 const queryRoute = express.Router();
-const Query=require('../models/query')
+const Query=require('../models/query');
+const User = require("../models/User");
 
 queryRoute.get('/getquery',async(req,res)=>{
     const result=await Query.find();
@@ -25,6 +26,9 @@ queryRoute.get('/getcomquery/:id',async(req,res)=>{
 })
 queryRoute.post('/addquery',async(req,res)=>{
   const query=req.body;
+  const { uid } = req.body;
+  // increment query count of user with _id equal to uid
+  const user = await User.findByIdAndUpdate(uid, { $inc: { queryCount: 1 }})
   console.log(query);
   const result=Query.create(req.body);
   res.send({msg:"Query added"});

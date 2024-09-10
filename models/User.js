@@ -17,6 +17,10 @@ const userSchema= mongoose.Schema({
     },
     password:{
         type:String,
+    },
+    querycount:{
+        type:Number,
+        default:0   
     }
 });
 
