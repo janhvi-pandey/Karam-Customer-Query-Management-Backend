@@ -6,7 +6,7 @@ const User=require('../models/User')
 router.post("/", async (req, res) => {
   try {
       const result = await User.create(req.body);
-      return res.send({ msg: "Success" });
+      return res.send({ msg: "Success",user:result });
   } catch (error) {
       return res.status(500).send({ msg: "Internal Server Error" });
   }
