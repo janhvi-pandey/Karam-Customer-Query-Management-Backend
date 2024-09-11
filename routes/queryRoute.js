@@ -56,7 +56,7 @@ queryRoute.get('/getuserquerycounts/:id', async (req, res) => {
 
 
 // Update Query
-queryRoute.put('/updatequery/:id', async (req, res) => {
+queryRoute.post('/updatequery/:id', async (req, res) => {
   const id = req.params.id;
   try {
     const updatedQuery = await Query.findByIdAndUpdate(id, req.body, { new: true });
