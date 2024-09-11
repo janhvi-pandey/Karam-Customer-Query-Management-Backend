@@ -35,10 +35,19 @@ router.post("/login", async (req, res) => {
     return res.send(result);
   });
   router.get("/:id", async (req, res) => {
-    const id = req.params.id;
-    const result = await User.findById(id);
-    return res.send(result);
+    try {
+      const id = req.params.id;
+      const result = await User.findById(id);
+      if (result) {
+        return res.json(result); // Ensure the response is JSON
+      } else {
+        return res.status(404).json({ msg: "User not found" });
+      }
+    } catch (error) {
+      return res.status(500).json({ msg: "Internal Server Error" });
+    }
   });
+  
   router.patch("/:id", async (req, res) => {
     try {
       const id = req.params.id;
@@ -51,7 +60,7 @@ router.post("/login", async (req, res) => {
   router.delete("/:id", async (req, res) => {
     try {
       const id = req.params.id;
-      const result = await Emp.findByIdAndDelete(id);
+      const result = await User.findByIdAndDelete(id);
       return res.send({ msg: "Success" });
     } catch (error) {
       return res.send({ msg: error });
