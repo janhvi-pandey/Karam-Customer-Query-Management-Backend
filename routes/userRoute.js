@@ -7,11 +7,26 @@ router.post("/", async (req, res) => {
   try {
       const result = await User.create(req.body);
       console.log(result);
-      return res.send({ msg: "Success" ,id: user._id });
+      return res.send({ msg: "Success" });
   } catch (error) {
       return res.status(500).send({ msg: "Internal Server Error" });
   }
 });
+
+//to register
+router.post("/register", async (req, res) => {
+  try {
+    const result = await User.create(req.body); 
+    console.log(result);
+    
+   
+    return res.status(201).send({ msg: "Success", id: result._id });
+  } catch (error) {
+    console.error("Error during registration:", error);
+    return res.status(500).send({ msg: "Internal Server Error" });
+  }
+});
+
 
 router.post("/login", async (req, res) => {
   try {
