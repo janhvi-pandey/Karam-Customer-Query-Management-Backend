@@ -6,12 +6,12 @@ const User = require("./models/User");
 const userrouter = require("./routes/userRoute");
 const adminRoutes = require("./routes/adminroute");
 const queryRoute = require("./routes/queryRoute");
+const enquiryRoutes = require('./routes/enquiryRoutes');
+const complaintRoutes = require('./routes/complaintRoutes');
+const feedbackRoutes = require('./routes/feedbackRoutes');
 const connectmongo = require('./database/db')
 
 // Middleware
-
-
-
 app.use(cors({
     origin: ['https://customer-query-management-frontend.vercel.app', 'http://localhost:3000'], 
     credentials: true
@@ -23,6 +23,9 @@ connectmongo();
 app.use('/admin', adminRoutes);
 app.use(queryRoute);
 app.use(userrouter);
+app.use('/api/enquiry', enquiryRoutes);
+app.use('/api/complaint', complaintRoutes);
+app.use('/api/feedback', feedbackRoutes);
 
 app.get("/", async (req, res) => {
   res.send("Hello World!");
