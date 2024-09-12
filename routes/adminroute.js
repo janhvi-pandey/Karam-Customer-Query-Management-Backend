@@ -62,7 +62,7 @@ router.get("/changetopro/:id", async (req, res) => {
 router.get("/changetocomp/:id", async (req, res) => {
   const id = req.params.id;
   try {
-    const query = await Query.findByIdAndUpdate(id, { status: "comp" });
+    const query = await Query.findByIdAndUpdate(id, { status: "com" });
     res.json({ query, success: true });
   } catch (error) {
     res.status(500).json({ message: "Error updating query status" });
