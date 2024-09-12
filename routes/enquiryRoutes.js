@@ -6,6 +6,8 @@ const Enquiry = require('../models/Enquiry');
 router.post('/submit', async (req, res) => {
   try {
     const { name, email, productCode, query, attachment } = req.body;
+    console.log(req.body);
+    
     const newEnquiry = new Enquiry({
       name,
       email,
