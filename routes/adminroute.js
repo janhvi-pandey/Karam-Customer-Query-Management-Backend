@@ -69,7 +69,7 @@ router.get("/changetocomp/:id", async (req, res) => {
   }
 });
 
-// New route to get counts for pending, processing, and completed queries
+//get counts for pending, processing, and completed queries
 router.get("/getquerycounts", async (req, res) => {
   try {
     const pendingCount = await Query.countDocuments({ status: "pen" });
