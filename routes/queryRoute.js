@@ -27,7 +27,7 @@ queryRoute.get('/getcomquery/:id',async(req,res)=>{
 queryRoute.post('/addquery',async(req,res)=>{
   const query=req.body;
   const { uid } = req.body;
-  // increment query count of user with _id equal to uid
+ 
   const user = await User.findById(uid);
   await user.querycount++;
   await user.save();

@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const Feedback = require('../models/Feedback');
 
-// POST /api/feedback/submit
+
 router.post('/submit', async (req, res) => {
   try {
     const { name, email, feedback } = req.body;
     console.log(req.body);
 
-    // Validate that the required fields are present
+  
     if (!name || !email || !feedback) {
       return res.status(400).json({ message: 'Missing required fields' });
     }
