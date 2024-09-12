@@ -23,9 +23,9 @@ connectmongo();
 app.use('/admin', adminRoutes);
 app.use(queryRoute);
 app.use(userrouter);
-app.use('/api/enquiry', enquiryRoutes);
-app.use('/api/complaint', complaintRoutes);
-app.use('/api/feedback', feedbackRoutes);
+app.use('/enquiry', enquiryRoutes);
+app.use('/complaint', complaintRoutes);
+app.use('/feedback', feedbackRoutes);
 
 app.get("/", async (req, res) => {
   res.send("Hello World!");
