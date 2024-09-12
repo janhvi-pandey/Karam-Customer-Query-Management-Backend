@@ -39,7 +39,7 @@ router.get("/:id", async (req, res) => {
     const id = req.params.id;
     const result = await User.findById(id);
     if (result) {
-      return res.json(result); // Ensure the response is JSON
+      return res.json(result); 
     } else {
       return res.status(404).json({ msg: "User not found" });
     }
