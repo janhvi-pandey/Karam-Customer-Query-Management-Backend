@@ -106,4 +106,18 @@ queryRoute.delete('/deletequery/:id', async (req, res) => {
     }
 });
 
+// Update query status to "pending"
+queryRoute.patch('/raisetopen/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+      const updatedQuery = await Query.findByIdAndUpdate(id, { status: "pen" }, { new: true });
+      if (!updatedQuery) {
+          return res.status(404).json({ message: 'Query not found' });
+      }
+      res.json({ message: 'Query status updated to pending', result: updatedQuery });
+  } catch (error) {
+      res.status(500).json({ message: 'Error updating query status' });
+  }
+});
+
 module.exports = queryRoute;
