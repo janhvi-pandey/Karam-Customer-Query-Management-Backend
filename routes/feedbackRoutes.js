@@ -10,7 +10,7 @@ router.post('/submit', async (req, res) => {
       name,
       email,
       feedback,
-      attachment,
+     
     });
     await newFeedback.save();
     res.status(201).json({ message: 'Feedback submitted successfully' });
