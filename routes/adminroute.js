@@ -74,7 +74,7 @@ router.get("/getquerycounts", async (req, res) => {
   try {
     const pendingCount = await Query.countDocuments({ status: "pen" });
     const processingCount = await Query.countDocuments({ status: "pro" });
-    const completedCount = await Query.countDocuments({ status: "comp" });
+    const completedCount = await Query.countDocuments({ status: "com" });
 
     res.json({
       pendingCount,
