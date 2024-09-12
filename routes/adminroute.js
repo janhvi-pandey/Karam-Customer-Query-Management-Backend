@@ -40,7 +40,7 @@ router.get("/getallpro", async (req, res) => {
 // Get all completed queries
 router.get("/getallcomp", async (req, res) => {
   try {
-    const compquery = await Query.find({ status: "comp" });
+    const compquery = await Query.find({ status: "com" });
     res.json(compquery);
   } catch (error) {
     res.status(500).json({ message: "Error fetching completed queries" });
